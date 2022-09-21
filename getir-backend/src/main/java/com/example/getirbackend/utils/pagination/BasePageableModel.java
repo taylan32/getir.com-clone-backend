@@ -26,7 +26,7 @@ public class BasePageableModel<T> {
 		this.pageSize = pageSize;
 		this.count = dataSize;
 		this.pageCount = (int) Math.ceil((double) count / (double) pageSize);
-		if (pageNumber > pageCount) {
+		if (count > pageSize && pageNumber > pageCount) {
 			throw new IllegalArgumentException("Geçersiz parametre.");
 		}
 

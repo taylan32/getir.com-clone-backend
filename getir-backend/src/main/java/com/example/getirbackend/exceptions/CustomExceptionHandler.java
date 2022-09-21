@@ -36,8 +36,14 @@ public class CustomExceptionHandler {
 	@ExceptionHandler(NotFoundException.class)
 	public ResponseEntity<NotFoundError> handleNotFoundException(NotFoundException exception) {
 		return new ResponseEntity<NotFoundError>(
-				new NotFoundError(HttpStatus.NOT_FOUND, "example.com/probs/notfound", "Not found", "Entity not found"),
+				new NotFoundError(HttpStatus.NOT_FOUND, "example.com/probs/notfound", "Not found", exception.getMessage()),
 				HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<ApiError> handleAuthException(Exception exception) {
+		return new ResponseEntity<ApiError>(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "example.com/probs/internal",
+				"Internal Server Error", exception.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 }
