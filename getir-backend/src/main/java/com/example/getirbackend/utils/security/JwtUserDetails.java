@@ -3,11 +3,13 @@ package com.example.getirbackend.utils.security;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.getirbackend.models.User;
+import com.example.getirbackend.repositories.UserRoleRepository;
 
 import lombok.Data;
 
@@ -31,7 +33,7 @@ public class JwtUserDetails implements UserDetails{
 	
 	public static JwtUserDetails create(User user) {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority("user"));
+		//authorities.add(new SimpleGrantedAuthority("user"));
 		return new JwtUserDetails(user.getId(), user.getEmail(), user.getPassword(), authorities);
 	}
 	
