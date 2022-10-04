@@ -20,7 +20,7 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
 
 	@Query(value = "select u.id, u.email, r.name from users u "
 			+ "inner join user_roles as ur on u.id = ur.user_id "
-			+ "inner join roles as r on ur.role_id = r.id"
+			+ "inner join roles as r on ur.role_id = r.id "
 			+ "where u.id = userId", nativeQuery = true)
 	List<GetListUserRoleResponse> getUserRoleWithDetail(long userId);
 }
